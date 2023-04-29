@@ -1,0 +1,41 @@
+<app-barra-navegacion></app-barra-navegacion>
+<div id="contenedor">
+  <div id="cabecera">
+    <p>Consumo de agua</p>
+  </div>
+  <div id="menu">
+    <ul>
+      <li>Consumido</li>
+      <table style=" border: 1px solid #000;">
+        <tr>
+          <td>
+            ID:
+          </td>
+          <td>
+            Cuenta:
+          </td>
+        </tr>
+        <tr>
+          <td>Litros</td>
+        </tr>
+      </table>
+    </ul>
+    <div id="contenido" *ngFor="let C of consumo">
+      <h1>Sensor de agua</h1>
+      <br><br>
+      <img [src]="getCaudalImagen(C.flujo)" alt="Medidor de caudal">
+    </div>
+    
+    <div id="contenido2">
+      <p>Litros contados</p>
+      <label *ngFor="let C of consumo" style="font-size: xx-large; color: blue; font-weight: bold">
+        {{C.flujo}}
+      </label>
+    </div>
+    <div id="pie">
+      <p>Párrafo en el pie de la página</p>
+    </div>
+  </div>
+  <div class="espacio1"></div>
+</div>
+<div class="espacio"></div>

@@ -1,0 +1,104 @@
+<div class="wrapper">
+    <div class="container d-flex align-items-center justify-content-center">
+      <!-- El main -->
+      <main>
+        <!-- Contenedor de todo -->
+        <div class="contenedor__todo">
+          <!-- Contenedor caja trasera -->
+          <div class="caja__trasera">
+            <!-- Contenedor caja trasera Inicio de sesión -->
+            <div class="caja__trasera-login">
+              <!--Formulario de Login y registro-->
+              <div *ngIf="!loading" class="contenedor__login-register">
+                <div>
+                  <!--Login-->
+                  <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario" class="formulario__login">
+                    <h2>Registrarse</h2>
+                    <input type="text" name="Nombre" placeholder="Nombre completo" class="form-control" autofocus
+                      formControlName="Nombre">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Nombre')?.hasError('required') && registrarUsuario.get('Nombre')?.touched">
+                      La <strong>Nombre</strong> es requerido
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Nombre')?.hasError('minlength') && registrarUsuario.get('Nombre')?.touched">
+                      La <strong>Nombre</strong> debe de tener al menos 3 caracteres
+                    </span>
+                    <input type="text" name="ApellidoPa" placeholder="Apelllido paterno" class="form-control"
+                      formControlName="ApellidoPaterno">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('ApellidoPaterno')?.hasError('required') && registrarUsuario.get('ApellidoPaterno')?.touched">
+                      El <strong>Apelllido paterno</strong> es requerido
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('ApellidoPaterno')?.hasError('minlength') && registrarUsuario.get('ApellidoPaterno')?.touched">
+                      El <strong>Apelllido paterno</strong> debe de tener al menos 3 caracteres
+                    </span>
+                    <input type="text" name="ApellidoMa" placeholder="Apelllido materno" class="form-control"
+                      formControlName="ApellidoMaterno">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('ApellidoMaterno')?.hasError('required') && registrarUsuario.get('ApellidoMaterno')?.touched">
+                      El <strong>Apelllido Materno</strong> es requerido
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('ApellidoMaterno')?.hasError('minlength') && registrarUsuario.get('ApellidoMaterno')?.touched">
+                      El <strong>Apelllido Materno</strong> debe de tener al menos 3 caracteres
+                    </span>
+                    <input type="text" name="Correo" class="form-control" placeholder="Correo electrónico"
+                      formControlName="Correo">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Correo')?.hasError('required') && registrarUsuario.get('Correo')?.touched">
+                      El <strong>correo</strong> es requerido
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Correo')?.hasError('email') && registrarUsuario.get('Correo')?.touched">
+                      El <strong>correo</strong> es invalido
+                    </span>
+                    <input type="text" name="Direccion" class="form-control" placeholder="Escribir tu dirección"
+                      formControlName="Direccion">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Direccion')?.hasError('required') && registrarUsuario.get('Direccion')?.touched">
+                      La <strong>Dirección</strong> es requerida
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Direccion')?.hasError('minlength') && registrarUsuario.get('Direccion')?.touched">
+                      La <strong>Dirección</strong> debe de tener al menos 3 caracteres
+                    </span>
+                    <input type="date" name="FechaNacimiento" class="form-control" formControlName="FechaNacimiento">
+                    <input type="password" name="Password" id="pass1" class="form-control"
+                      placeholder="Escribir contraseña" formControlName="Contrasena">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Contrasena')?.hasError('required') && registrarUsuario.get('Contrasena')?.touched">
+                      La <strong>contraseña</strong> es requerida
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Contrasena')?.hasError('minlength') && registrarUsuario.get('Contrasena')?.touched">
+                      La <strong>contraseña</strong> debe de tener al menos 8 caracteres
+                    </span>
+                    <input type="password" name="Password2" id="pass2" class="form-control"
+                      placeholder="Confirmar contraseña" formControlName="Confirmarcontrasena">
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Confirmarcontrasena')?.hasError('required') && registrarUsuario.get('Confirmarcontrasena')?.touched">
+                      La <strong>contraseña</strong> es requerida
+                    </span>
+                    <span class="text-danger errorLabel"
+                      *ngIf="registrarUsuario.get('Confirmarcontrasena')?.hasError('minlength') && registrarUsuario.get('Confirmarcontrasena')?.touched">
+                      La <strong>contraseña</strong> debe de tener al menos 8 caracteres
+                    </span>
+                    <br>
+                    <button class="registro" class="btn btn-lg btn-info btn-block mt-3" type="submit"
+                      [disabled]="registrarUsuario.invalid">Registrarse</button>
+                    <div class="tienescuenta mt-2">
+                      <p>¿Ya tienes cuenta?</p>
+                      <button class="btn btn-primary" routerLink="/login">Ingresar</button>
+                    </div>
+                  </form>
+                </div>
+                <app-spinner *ngIf="loading"></app-spinner>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

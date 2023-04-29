@@ -1,0 +1,101 @@
+<app-barra-navegacion></app-barra-navegacion>
+<div class="wrapper">
+    <div class="Caja-trasera mb-5">
+        <div style="text-align: center;">
+            <h2>
+                Configuración
+            </h2>
+            <div class="form-configuracion" *ngIf="rol == 'habitante'">
+                <h2>Información de tu cuenta</h2>
+                <div class="form-group">
+                    <input type="text" name="Nombre" [value]="Nombre" class="form-control" disabled />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ApellidoPa" [value]="ApellidoPaterno" class="form-control"
+                        disabled />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ApellidoMa" [value]="ApellidoMaterno" class="form-control"
+                        disabled />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Correo" class="form-control" [value]="CorreoElectronico" disabled />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Direccion" class="form-control" [value]="Direccion"
+                        disabled />
+                </div>
+                <div class="form-group">
+                    <input type="date" name="FechaNacimiento" class="form-control" [value]="FechaNacimiento" disabled />
+                </div>
+                <div class="form-group">
+                    <input type="text" name="rol" id="rol1" class="form-control"
+                    [value]="rol" disabled />
+                </div>
+            </div>
+            <div class="container form-condimodeagua" *ngIf="rol == 'administrador'">
+                <div class="row">
+                    <h1>Historial Administrador</h1>
+                    <div class="card col-md-3 mx-auto my-5 table-responsive" style="width: 88rem;">
+                        <div class="btn_create"><a href="/Configuracion/Crear" class="btn_Acciones_Save">
+                                <ul><span class="icon-plus"></span> CREAR</ul><i></i>
+                            </a></div>
+                        <table id="Usuarios" class="table table-sm table-primary table-hover table-bordered ">
+                            <caption>Lista de tarifas</caption>
+                            <thead class="table-info">
+                                <tr>
+                                    <th scope="col">
+                                        <font color="black">Nombre</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Apellido Paterno</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Apellido Materno</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Contraseña</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Correo Electrónico</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Dirección</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Fecha de Nacimiento</font>
+                                    </th>
+                                    <th scope="col">
+                                        <font color="black">Rol</font>
+                                    </th>
+                                    <th scope="col">ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Datos of usuarios" style="background-color: rgb(255, 255, 255);">
+                                    <td>{{Datos.Nombre}}</td>
+                                    <td>{{Datos.ApellidoPaterno}}</td>
+                                    <td>{{Datos.ApellidoMaterno}}</td>
+                                    <td>{{Datos.Contrasena}}</td>
+                                    <td>{{Datos.CorreoElectronico}}</td>
+                                    <td>{{Datos.Direccion}}</td>
+                                    <td>{{Datos.FechaNacimiento}}</td>
+                                    <td>{{Datos.rol}}</td>
+                                    <td id="UsuariosregAcciones">
+                                        <a class="btn_Acciones_Edit" href="">
+                                            <ul><span class="icon-pencil"></span> EDITAR</ul><i class='bx bxs-edit'></i>
+                                        </a>
+                                        <a class="btn_Acciones_Delete" onclick="">
+                                            <ul><i class="icon-bin"></i>ELIMINAR </ul><i></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
