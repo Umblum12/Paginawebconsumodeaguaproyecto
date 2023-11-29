@@ -24,7 +24,6 @@ export class ConfiguracionComponent  implements OnInit {
     private afAuth: AngularFireAuth,
   ) 
   {//iniciador
-
     this.usuarios = [];
     this.getusers();
     this.startTimer();
@@ -45,7 +44,6 @@ export class ConfiguracionComponent  implements OnInit {
   pauseTimer() {
     clearInterval(this.interval);
   }
-  
   //Mostrar
   getusers() {
     const dbRef = ref(getDatabase());
@@ -64,7 +62,6 @@ export class ConfiguracionComponent  implements OnInit {
       if (user && user.emailVerified) {
         this.dataUser = user;
         this.id = user.uid;
-        console.log(this.id);
         this.getUserRol(this.id); // obtener el rol del usuario actual
         this.getusers(); // obtener los registros de consumo de agua
       }else{
@@ -86,8 +83,6 @@ getUserRol(userId: string) {
       this.CorreoElectronico = userData.CorreoElectronico;
       this.Direccion = userData.Direccion;
       this.FechaNacimiento = userData.FechaNacimiento;
-      console.log(`El rol del usuario es: ${this.rol}`);
-      
     } else {
       console.log("No data available");
     }
@@ -95,5 +90,4 @@ getUserRol(userId: string) {
     console.error(error);
   });
 }
-
 }

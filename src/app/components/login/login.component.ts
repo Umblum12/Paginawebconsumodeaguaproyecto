@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.service';
+import {  ElementRef , ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { FirebaseCodeErrorService } from 'src/app/services/firebase-code-error.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  dataUser: any;
   loginUsuario: FormGroup;
   loading: boolean = false;
   constructor(
@@ -26,6 +28,14 @@ export class LoginComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    this.afAuth.currentUser.then(user => {
+      if (user && user.emailVerified) {
+        this.dataUser = user;
+        this.router.navigate(['/login'])
+      }else{
+        this.router.navigate(['/login'])
+      }
+    })
   }
   login() {
     const Correo = this.loginUsuario.value.Correo;
@@ -43,5 +53,31 @@ export class LoginComponent implements OnInit {
       this.toastr.error(this.firebaseError.CodeError(error.code), 'Error');
       console.log(error.code);
     })
+  }
+
+
+  @ViewChild('container', { static: false }) container!: ElementRef;
+
+  onRegisterClick() {
+    if (this.container) {
+      this.container.nativeElement.classList.add('active');
+    }
+  }
+
+  onLoginClick() {
+    if (this.container) {
+      this.container.nativeElement.classList.remove('active');
+    }
+  }
+  isSignUpVisible: boolean = false;
+
+  toggleSignUpVisibility() {
+    this.isSignUpVisible = !this.isSignUpVisible;
+  }
+
+  mostrarContrasena: boolean = false;
+
+  toggleMostrarContrasena(): void {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
 }

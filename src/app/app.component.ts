@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Hotjar from '@hotjar/browser';
 
 @Component({
   selector: 'app-root',
@@ -8,3 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Paginawebconsumodeaguaproyecto';
 }
+
+const siteId = 3735888;
+const hotjarVersion = 6;
+
+Hotjar.init(siteId, hotjarVersion);

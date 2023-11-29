@@ -25,7 +25,6 @@ export class BarraNavegacionComponent implements OnInit {
       if (user && user.emailVerified) {
         this.dataUser = user;
         this.id = this.dataUser = user.uid;
-        console.log(this.id);
         this.getUserRol(this.id); // obtener el rol del usuario actual
       }else{
         this.router.navigate(['/login'])
@@ -57,8 +56,6 @@ export class BarraNavegacionComponent implements OnInit {
       if (snapshot.exists()) {
         const userData = snapshot.val();
         this.rol = userData.rol;
-        console.log(`El rol del usuario es: ${this.rol}`);
-
       } else {
         console.log("No data available");
       }

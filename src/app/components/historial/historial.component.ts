@@ -34,11 +34,8 @@ export class HistorialComponent implements OnInit {
   ngOnInit(): void {
     this.afAuth.currentUser.then(user => {
       if (user && user.emailVerified) {
-        console.log(user);
-        
         this.dataUser = user;
         this.id = user.uid;
-        console.log(this.id);
         this.getUserRol(this.id); // obtener el rol del usuario actual
         this.getusers(); // obtener los registros de consumo de agua
       } else {
@@ -69,8 +66,6 @@ export class HistorialComponent implements OnInit {
       if (snapshot.exists()) {
         const userData = snapshot.val();
         this.rol = userData.rol;
-        console.log(`El rol del usuario es: ${this.rol}`);
-
       } else {
         console.log("No data available");
       }

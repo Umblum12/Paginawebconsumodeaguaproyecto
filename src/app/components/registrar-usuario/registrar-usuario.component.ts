@@ -98,4 +98,14 @@ export class RegistrarUsuarioComponent implements OnInit {
     });
     this.toastr.success('¡El usuario se ha registrado con éxito!', 'Registro exitoso');
   }
+
+  mostrarContrasena: boolean = false;
+  mostrarContrasena1: boolean = false;
+
+  toggleMostrarContrasena(): void {
+    this.mostrarContrasena = !this.mostrarContrasena;
+  }
+  toggleMostrarContrasena1(): void {
+    this.mostrarContrasena1 = !this.mostrarContrasena1;
+  }
 }

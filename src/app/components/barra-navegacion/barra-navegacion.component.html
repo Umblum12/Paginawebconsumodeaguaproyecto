@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
   <div class="container-fluid ">
-    <a class="navbar-brand" href="#">
-      <img src="../../assets/imagenes/logo.png" alt="" width="100" height="85">
+    <a class="navbar-brand">
+      <img src="../../assets/imagenes/Logo.gif" alt="" width="150" height="85">
     </a>
-    <a class="navbar-brand" href="#">Scapes</a>
+    <a class="navbar-brand"><span><img src="../../../assets/imagenes/gota-de-agua-icon.svg" alt="" width="35" height="85"></span> AQUACONTROL-CONNECT</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
       aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,38 +11,37 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav my-2 me-auto my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLinkActive]="['active-link']"
-            [routerLink]="['/inicio']">Inicio</a>
+          <a class="nav-link btn btn-outline-info" aria-current="page"  [routerLinkActive]="['active-link']"
+            [routerLink]="['/inicio']"><span><img src="../../../assets/imagenes/house-icon.svg" alt="" width="20" height="25"></span> Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLinkActive]="['active-link']"
-            [routerLink]="['/valvula']">Válvula</a>
+          <a class="nav-link btn btn-outline-info" aria-current="page" [routerLinkActive]="['active-link']"
+            [routerLink]="['/valvula']"><span><img src="../../../assets/imagenes/grifo-icon.svg" alt="" width="20" height="25"></span> Válvula</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
-            [routerLink]="['/historial']">Historial</a>
+          <a class="nav-link btn btn-outline-info" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
+            [routerLink]="['/historial']"><span><img src="../../../assets/imagenes/folders-icon.svg" alt="" width="20" height="25"></span> Historial</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
-            [routerLink]="['/grafica-flujo']">Gráfica sensor de agua</a>
+          <a class="nav-link btn btn-outline-info" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
+            [routerLink]="['/graficas']"><span><img src="../../../assets/imagenes/analysis-icon.svg" alt="" width="20" height="25"></span> Gráficas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
-            [routerLink]="['/grafica-valvula']">Gráfica válvula eléctrica</a>
+          <a class="nav-link btn btn-outline-info" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
+            [routerLink]="['/acercade']"><span><img src="../../../assets/imagenes/info-icon.svg" alt="" width="20" height="25"></span> Información</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true" [routerLinkActive]="['active-link']"
-            [routerLink]="['/configuracion']">Configuración</a>
-        </li>
       </ul>
       <ul class="navbar-nav me-5">
         <li class="nav-item dropdown ml-auto me-5">
           <a class="nav-link dropdown-toggle btn btn-info" type="button" href="#" id="navbarScrollingDropdown"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Perfil {{rol}} <span class="icon-user"></span>
+            <span><img src="../../../assets/imagenes/Perfil-hombre-icon.svg" alt="" width="20" height="25"></span> Perfil {{rol}} 
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#" (clik)="logout()"><span class="icon-switch"></span> Cerrar sesión</a>
+            <li><a class="dropdown-item" href="#" [routerLink]="['/configuracion']"><span><img src="../../../assets/imagenes/settings-icon.svg" alt="" width="20" height="25"></span> Configuración</a>
+            </li>
+            <li><a class="dropdown-item" href="#" (clik)="logout()"><span><img src="../../../assets/imagenes/salida-icon.svg" alt="" width="20" height="25"></span> Cerrar sesión</a>
             </li>
           </ul>
         </li>

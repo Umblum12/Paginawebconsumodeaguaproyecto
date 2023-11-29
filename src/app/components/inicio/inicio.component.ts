@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Database, set, ref, update, onValue, remove, DataSnapshot, child, getDatabase, get, object } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-inicio',
@@ -51,15 +52,16 @@ export class InicioComponent implements OnInit {
     console.error(error);
   });
 }
-  ngOnInit(): void {
-    this.afAuth.currentUser.then(user => {
-      if (user && user.emailVerified) {
+ngOnInit(): void {
+  this.afAuth.authState.subscribe(user => {
+    if (user && user.emailVerified) {
         this.dataUser = user;
-      }else{
-        this.router.navigate(['/login'])
-      }
-    })
-  }
+    } else {
+      this.router.navigate(['/login']);
+    }
+  });
+}
+
   getCaudalImagen(caudal: number) {
     if (caudal <= 0) {
       return '../../../assets/imagenes/Icono_SensorAgua_Grafica_fondo.png';

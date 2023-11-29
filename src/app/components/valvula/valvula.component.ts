@@ -14,19 +14,26 @@ export class ValvulaComponent implements OnInit {
     private router: Router,
     public database: Database,
     private afAuth: AngularFireAuth,
-    ) {
+  ) {
   }
-
+  public valveOpen: boolean = false;
   ngOnInit(): void {
     this.afAuth.currentUser.then(user => {
       if (user && user.emailVerified) {
         this.dataUser = user;
-      }else{
+        // Obtener el estado actual de la base de datos
+        const dbRef = ref(this.database, 'Consumodeagua/Valvula/Estado');
+        get(dbRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            // Asignar el valor de la base de datos a la variable valveOpen
+            this.valveOpen = snapshot.val();
+          }
+        });
+      } else {
         this.router.navigate(['/login'])
       }
     })
   }
-  public valveOpen: boolean = false;
   rele() {
     this.valveOpen = !this.valveOpen;
     update(ref(this.database, 'Consumodeagua/Valvula/'), {

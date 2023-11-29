@@ -1,0 +1,68 @@
+<app-barra-navegacion></app-barra-navegacion>
+<div class="wrapper">
+  <div class="container">
+    <main>
+      <div class="background-container">
+        <div class="banner-container">
+          <h2>Consumo de agua</h2>
+        </div>
+        <br>
+        <div class="form-container">
+          <div class="inicio-container">
+            <div class="cuadro-gris text-center">
+                <div class="container">
+                    <ul class="nav nav-tabs" id="myTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1">Gráfica sensor de flujo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2">Gráfica válvula eléctrica</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-2">
+                        <div class="tab-pane fade show active" id="tab1">
+                            <div>
+                                <h2>Gráfica sensor de flujo</h2>
+                                <div class="toolbar" role="banner">
+                                    <div class="spacer"></div>
+                                </div>
+                                <div class="content" role="main">
+                                    <label style="font-size: xx-large">DATOS DE MOVIMIENTO </label>
+                                    <br>
+                                    <label *ngFor="let Litros of Consumo" style="font-size: xx-large; color: blue; font-weight: bold">
+                                        {{Litros.flujo}}
+                                    </label> 
+                                    <label class="mx-3" style="font-size: xx-large; color: blue;">Litros</label>
+                                    <canvas #chartFlujo width="500" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2">
+                            <div >
+                                <h2>Gráfica válvula eléctrica</h2>
+                                <div class="toolbar" role="banner">
+                                    <div class="spacer"></div>
+                                </div>
+                                <div class="content" role="main">
+                                    <label style="font-size: xx-large">DATOS DE MOVIMIENTO </label>
+                                    <br>
+                                    <label style="font-size: xx-large; color: blue; font-weight: bold">
+                                        {{Check}}
+                                    </label> 
+                                    <label class="mx-3" style="font-size: xx-large; color: blue;">Estado</label>
+                                    <canvas #chartValvula width="500" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<app-footer></app-footer>

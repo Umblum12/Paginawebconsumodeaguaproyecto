@@ -1,0 +1,13 @@
+*{
+  color: white;
+  align-items: center;
+}
+
+.imagenes{
+ height: 200px;
+ margin-top: 20px;
+ margin-bottom: 20px;
+}
+.banner{
+ height: 166px;
+}

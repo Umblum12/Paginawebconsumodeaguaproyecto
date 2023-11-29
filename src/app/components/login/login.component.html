@@ -1,58 +1,81 @@
+<app-barra-informacion></app-barra-informacion>
 <div class="wrapper">
-    <div class="container d-flex align-items-center justify-content-center">
-        <main>
-            <!-- Contenedor de todo -->
-            <div class="contenedor__todo">
-                <!-- Contenedor caja trasera -->
-                <div class="caja__trasera">
-                    <!-- Contenedor caja trasera Inicio de sesión -->
-                    <div class="caja__trasera-login">
-                        <!-- Titulo de caja trasera Inicio de sesión -->
-                        <h3>¿Ya tienes una cuenta?</h3>
-                        <!-- Contenedor caja trasera Texto -->
-                        <p>Inicia sesión para entrar en la página</p>
-                        <!-- Contenedor caja trasera Boton-->
-                        <button id="btn__iniciar-sesion">Iniciar sesión</button>
-                    </div>
-                    <div class="caja__trasera-register">
-                        <h3>¿Aún no tienes una cuenta?</h3>
-                        <p>Regístrate para que puedas iniciar sesión</p>
-                        <button id="btn__registrarse" [routerLink]="['/registrar-usuario']">Registrarse</button>
-                        <p>¿Olvidaste tu contraseña?</p>
-                        <button class="btn btn-primary" routerLink="/recuperar-password">Recuperar</button>
-                    </div>
-                </div>
-                <!--Formulario de Login y registro-->
-                <div class="contenedor__login-register" *ngIf="!loading">
-                    <!--Login-->
-                    <form (ngSubmit)="login()" class="formulario__login" [formGroup]="loginUsuario">
-                        <h2>Iniciar sesión</h2>
-                        <input type="text" name="Nombre" placeholder="Correo electrónico" class="form-control"
-                            formControlName="Correo">
-                        <span class="text-danger errorLabel"
-                            *ngIf="loginUsuario.get('Correo')?.hasError('required') && loginUsuario.get('Correo')?.touched">
-                            El <strong>correo</strong> es requerido
-                        </span>
-                        <span class="text-danger errorLabel"
-                            *ngIf="loginUsuario.get('Correo')?.hasError('email') && loginUsuario.get('Correo')?.touched">
-                            El <strong>correo</strong> es inválido
-                        </span>
-                        <input type="password" name="Password" placeholder="Contraseña" class="form-control"
-                            formControlName="Contrasena">
-                        <span class="text-danger errorLabel"
-                            *ngIf="loginUsuario.get('Contrasena')?.hasError('required') && loginUsuario.get('Contrasena')?.touched">
-                            La <strong>contraseña</strong> es requerida
-                        </span>
-                        <span class="text-danger errorLabel"
-                            *ngIf="loginUsuario.get('Contrasena')?.hasError('minlength') && loginUsuario.get('Contrasena')?.touched">
-                            La <strong>contraseña</strong> debe tener al menos 8 caracteres
-                        </span>
-                        <br>
-                        <button type="submit" [disabled]="loginUsuario.invalid">Entrar</button>
-                    </form>
-                </div>
-                <app-spinner *ngIf="loading"></app-spinner>
-            </div>
-        </main>
+  <div class="center-container" *ngIf="!loading">
+    <div class="container" id="container" [ngClass]="{'active': isSignUpVisible}">
+      <!-- Contenido de tu formulario de registro -->
+      <div class="form-container sign-up" *ngIf="isSignUpVisible">
+        <form>
+          <h1>¿Aún no tienes una cuenta?</h1>
+          <div class="social-icons">
+            <a class="bi bi-google"><i class="fa-brands fa-google-plus-g"></i></a>
+            <a class="bi bi-facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="bi bi-github"><i class="fa-brands fa-github"></i></a>
+            <a class="bi bi-linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <p>Registrate para que puedas iniciar sesión</p>
+          <button id="btn__registrarse" class="buttonslogin" [routerLink]="['/registrar-usuario']">Registrarse</button>
+          <p>¿Olvidaste tu contraseña?</p>
+          <button class="btn btn-primary buttonslogin" routerLink="/recuperar-password">Recuperar</button>
+        </form>
+      </div>
+      <!-- Contenido de tu formulario de inicio de sesión -->
+      <div class="form-container sign-in"  *ngIf="!isSignUpVisible">
+        <form (ngSubmit)="login()" class="formulario__login" [formGroup]="loginUsuario">
+          <h1>Iniciar sesión</h1>
+          <div class="social-icons">
+            <a class="bi bi-google"><i class="fa-brands fa-google-plus-g"></i></a>
+            <a class="bi bi-facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="bi bi-github"><i class="fa-brands fa-github"></i></a>
+            <a class="bi bi-linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <span>o utiliza tu contraseña de correo electrónico</span>
+          <input type="text" name="Nombre" placeholder="Correo electrónico" class="form-control"
+            formControlName="Correo">
+          <span class="text-danger errorLabel"
+            *ngIf="loginUsuario.get('Correo')?.hasError('required') && loginUsuario.get('Correo')?.touched">
+            El <strong>correo</strong> es requerido
+          </span>
+          <span class="text-danger errorLabel"
+            *ngIf="loginUsuario.get('Correo')?.hasError('email') && loginUsuario.get('Correo')?.touched">
+            El <strong>correo</strong> es inválido
+          </span>
+          <div class="input-group">
+            <input type="{{ mostrarContrasena ? 'text' : 'password' }}" name="Password" placeholder="Contraseña"
+              class="form-control input-contrasena" formControlName="Contrasena">
+            <button type="button" class="mostrar-ocultar-btn btn btn-primary" (click)="toggleMostrarContrasena()">
+              <i [ngClass]="{'bi-eye': mostrarContrasena, 'bi-eye-slash': !mostrarContrasena}"></i>
+            </button>
+          </div>
+          <span class="text-danger errorLabel"
+            *ngIf="loginUsuario.get('Contrasena')?.hasError('required') && loginUsuario.get('Contrasena')?.touched">
+            La <strong>contraseña</strong> es requerida
+          </span>
+          <span class="text-danger errorLabel"
+            *ngIf="loginUsuario.get('Contrasena')?.hasError('minlength') && loginUsuario.get('Contrasena')?.touched">
+            La <strong>contraseña</strong> debe tener al menos 8 caracteres
+          </span>
+          <button type="submit" class="buttonslogin" [disabled]="loginUsuario.invalid">Entrar</button>
+        </form>
+      </div>
+       
+      <!-- Toggle para cambiar entre registro e inicio de sesión -->
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left" *ngIf="isSignUpVisible">
+            <h1>¡Bienvenido de nuevo!</h1>
+            <p>Ingrese sus datos personales para utilizar todas las funciones del sitio</p>
+            <button class="hidden buttonslogin" (click)="toggleSignUpVisibility()">Iniciar sesión</button>
+          </div>
+          <div class="toggle-panel toggle-right" *ngIf="!isSignUpVisible">
+            <h1>¡Hola, Amigo!</h1>
+            <p>Registrese con sus datos personales para utilizar todas las funciones del sitio</p>
+            <button class="hidden buttonslogin" (click)="toggleSignUpVisibility()">Registrate</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
 </div>
+
+<app-footer></app-footer>

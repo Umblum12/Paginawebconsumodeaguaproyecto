@@ -11,9 +11,9 @@ import { BarraNavegacionComponent } from './components/barra-navegacion/barra-na
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ValvulaComponent } from './components/valvula/valvula.component';
 import { HistorialComponent } from './components/historial/historial.component';
-import { GraficaFlujoComponent } from './components/grafica-flujo/grafica-flujo.component';
-import { GraficaValvulaComponent } from './components/grafica-valvula/grafica-valvula.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { AcercadeComponent } from './components/acercade/acercade.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'valvula', component: ValvulaComponent },
   { path: 'historial', component: HistorialComponent },
-  { path: 'grafica-flujo', component: GraficaFlujoComponent },
-  { path: 'grafica-valvula', component: GraficaValvulaComponent },
+  { path: 'graficas', component: GraficasComponent },
+  { path: 'acercade', component: AcercadeComponent },
   { path: 'configuracion', component: ConfiguracionComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 

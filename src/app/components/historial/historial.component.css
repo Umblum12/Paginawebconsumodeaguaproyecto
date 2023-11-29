@@ -1,27 +1,157 @@
-.Caja-trasera{
-    margin-left: 100px;
-    margin-right: 100px;
-    height: auto;
-    padding-bottom: 60px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  main {
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+  }
+  
+  .container {
+    width: auto;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+  }
+  
+  .background-container {
+    width: 100%;
+    min-height: 100px;
+    height: fit-content;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(10px);
     background-color: rgba(0, 217, 255, 0.1.7);
-}
-.row{
-    margin-left: 65px;
-}
-.table{
- width: 80%;
- margin-left: 100px;
- margin-right: 100px;
- margin-top: 20px;
-}
-.Formulario-Historial{
-        margin-left: 300px;
-        margin-right: 300px;
-}
-h2 {
+  }
+  
+  .background-container div {
+    width: 100%;
     color: white;
-    padding-top: 20px;
+    transition: all 500ms;
+  }
+  
+  .banner-container {
+    width: 100%;
+    background-color: #46A2FD; /* Color azul del banner */
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white; /* Color de texto blanco en el banner */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  .form-container {
+    background-color: #ddd; /* Color del cuadro gris */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .inicio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cuadro-gris {
+    background-color: #ddd; /* Color del cuadro gris */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .cuadro-gris img {
+    max-width: 100%;
+  }
+  
+  /* Estilos para dispositivos móviles */
+  @media (max-width: 767px) {
+    .inicio-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  
+    .login-form {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      margin: auto;
+      position: static;
+    }
+  
+    .registro-btn {
+      padding: 10px 40px;
+      margin-top: 40px;
+      border: none;
+      font-size: 14px;
+      background: #46A2FD;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      outline: none;
+    }
+  
+    .have-account {
+      color: white;
+    }
+
+    .table thead{
+		display: none;
+	}
+
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+	.table tr{
+		margin-bottom:15px;
+	}
+	.table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+  }
+  
+  .table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table td,.table th{
+  padding:12px 15px;
+  border:1px solid #ddd;
+  text-align: center;
+  font-size:16px;
+}
+
+.table tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+/*responsive*/
+
+@media(max-width: 500px){
+	
 }
 
 /*  boton acciones delete hace que se mire como boton */
@@ -110,4 +240,11 @@ h2 {
     cursor: pointer;
     border-radius: 10px;
     border: none;
+}
+h2{
+  color: #0385FF;
+}
+
+.text{
+  color: #0385FF;
 }

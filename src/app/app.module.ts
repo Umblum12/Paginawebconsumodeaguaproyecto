@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -21,13 +22,15 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 import { VerificarCorreoComponent } from './components/verificar-correo/verificar-correo.component';
-import { GraficaFlujoComponent } from './components/grafica-flujo/grafica-flujo.component';
-import { GraficaValvulaComponent } from './components/grafica-valvula/grafica-valvula.component';
 import { BarraInformacionComponent } from './components/barra-informacion/barra-informacion.component';
 import { BarraNavegacionComponent } from './components/barra-navegacion/barra-navegacion.component';
 
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { AcercadeComponent } from './components/acercade/acercade.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
+import { ConsumoComponent } from './components/consumo/consumo.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +42,14 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
     RegistrarUsuarioComponent,
     RecuperarPasswordComponent,
     VerificarCorreoComponent,
-    GraficaFlujoComponent,
-    GraficaValvulaComponent,
     BarraInformacionComponent,
     BarraNavegacionComponent,
     SpinnerComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    AcercadeComponent,
+    GraficasComponent,
+    ConsumoComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
     ToastrModule.forRoot(), // ToastrModule added
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideDatabase(() => getDatabase()),
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

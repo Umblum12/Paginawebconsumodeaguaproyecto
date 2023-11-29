@@ -1,143 +1,166 @@
 <app-barra-navegacion></app-barra-navegacion>
 <div class="wrapper">
-    <div class="Caja-trasera">
-        <div style="text-align: center;">
-            <form >
-                <h2>
-                    Historial
-                </h2>
-            </form>
+    <div class="container">
+        <main>
+            <div class="background-container">
+                <div class="banner-container">
+                    <h1>Consumo de agua</h1>
+                </div>
+                <br>
+                <div class="form-container">
+                    <div class="inicio-container">
+                        <div class="cuadro-gris text-center">
+                            <h2>Historial</h2>
+                            <div class="container" *ngIf="rol == 'habitante'">
+                                <div class="row">
+                                    <div class="card ">
+                                        <table class="table">
+                                            <caption>Lista de historial</caption>
+                                            <thead class="table-info">
+                                                <tr>
+                                                    <th>
+                                                        <font color="black">Nombre</font>
+                                                    </th>
+                                                    <th>
+                                                        <font color="black">Estado</font>
+                                                    </th>
+                                                    <th>
+                                                        <font color="black">Flujo</font>
+                                                    </th>
+                                                    <th>
+                                                        <font color="black" id="fecha" for="start">Seleccione fecha:
+                                                        </font>
+                                                        <input id="infecha" type="date" id="start" name="trip-start"
+                                                            value="" min="2022-01-01" max="2023-12-30">
+                                                        <input type="submit" value="Aplicar">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let Historial of usuarios"
+                                                    style="background-color: rgb(255, 255, 255);">
+                                                    <td data-label="Nombre">{{Historial.Nombre}}</td>
+                                                    <td data-label="Estado">{{Historial.Estado}}</td>
+                                                    <td data-label="Flujo">{{Historial.Flujo}}</td>
+                                                    <td data-label="Fecha">{{Historial.Fecha}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container" *ngIf="rol == 'administrador'">
+                                <div class="row">
+                                    <div class="card">
+                                        <form class="Formulario-Historial"
+                                            *ngIf="OpenCrear == true || OpenEditar == true"
+                                            (ngSubmit)="registerUser(RegisterForm.value)" #RegisterForm="ngForm">
+                                            <h2>
+                                                <font color="black">Historial de Datos de Usuarios</font>
+                                            </h2>
+                                            <div class="form-group">
+                                                <font color="black" for="uid">UID</font>
+                                                <input type="text" class="form-control" ngModel id="uid" name="uid"
+                                                    placeholder="UID">
+                                            </div>
+                                            <div class="form-group">
+                                                <font color="black" for="aid">ID</font>
+                                                <input type="text" class="form-control" ngModel id="aid" name="aid"
+                                                    placeholder="ID">
+                                            </div>
+                                            <div class="form-group">
+                                                <font color="black" for="Nombre">Nombre</font>
+                                                <input type="text" class="form-control" ngModel id="Nombre"
+                                                    name="Nombre" placeholder="Nombre">
+                                            </div>
+                                            <div class="form-group">
+                                                <font color="black" for="Fecha">Fecha</font>
+                                                <input type="text" class="form-control" ngModel id="Fecha" name="Fecha"
+                                                    placeholder="Fecha">
+                                            </div>
+                                            <div class="form-group">
+                                                <font color="black" for="Flujo">Flujo</font>
+                                                <input type="text" class="form-control" ngModel id="Flujo" name="Flujo"
+                                                    placeholder="Flujo">
+                                            </div>
+                                            <div class="form-group">
+                                                <font color="black" for="Estado">Estado</font>
+                                                <input type="text" class="form-control" ngModel id="Estado"
+                                                    name="Estado" placeholder="Estado">
+                                            </div>
 
-            <div class="container form-condimodeagua" *ngIf="rol == 'habitante'">
-                <div class="row">
-                    <div class="card  mx-auto table-responsive" style="width: 80rem;">
-                        <table class="table table-sm table-primary table-hover table-bordered">
-                            <caption>Lista de historial</caption>
-                            <thead class="table-info">
-                                <tr>
-                                    <th>
-                                        <font color="black">Nombre</font>
-                                    </th>
-                                    <th>
-                                        <font color="black">Estado</font>
-                                    </th>
-                                    <th>
-                                        <font color="black">Flujo</font>
-                                    </th>
-                                    <th>
-                                        <font color="black" id="fecha" for="start">Seleccione fecha:</font>
-                                        <input id="infecha" type="date" id="start" name="trip-start" value=""
-                                            min="2022-01-01" max="2023-12-30">
-                                        <input type="submit" value="Aplicar">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let Historial of usuarios" style="background-color: rgb(255, 255, 255);">
-                                    <td>{{Historial.Nombre}}</td>
-                                    <td>{{Historial.Estado}}</td>
-                                    <td>{{Historial.Flujo}}</td>
-                                    <td>{{Historial.Fecha}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            <input *ngIf="OpenEditar == false || OpenCrear == true" type="submit"
+                                                id="saveData" name="signup_submit" value="Crear historial"
+                                                class="btn btn-success mt-3 mb-5"
+                                                placeholder="font:color=white; Crear nuevo empleado" />
+
+                                            <input *ngIf="OpenEditar == true || OpenCrear == false" type="submit"
+                                                id="saveData" name="signup_submit" value="Editar historial"
+                                                class="btn btn-primary mt-3 mb-5 mx-2"
+                                                placeholder="font:color=white; Crear nuevo empleado" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="btn_create">
+                                    <a (click)="botonCreear()" class="btn_Acciones_Save">
+                                        <ul>
+                                            <span class="icon-plus"></span>
+                                            CREAR
+                                        </ul>
+                                    </a>
+                                </div>
+                                <table id="Usuarios" class="table table-sm table-primary table-hover table-bordered ">
+                                    <caption>Lista de historial</caption>
+                                    <thead class="table-info">
+                                        <tr>
+                                            <th scope="col">
+                                                <font color="black">Id</font>
+                                            </th>
+                                            <th scope="col">
+                                                <font color="black">Nombre</font>
+                                            </th>
+                                            <th scope="col">
+                                                <font color="black">Estado</font>
+                                            </th>
+                                            <th scope="col">
+                                                <font color="black">Flujo</font>
+                                            </th>
+                                            <th scope="col">
+                                                <font color="black" id="fecha" for="start">Seleccione fecha:</font>
+                                                <input id="infecha" type="date" id="start" name="trip-start" value=""
+                                                    min="2022-01-01" max="2023-12-30">
+                                                <input type="submit" value="Aplicar">
+                                            </th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let h of usuariosall">
+                                        <tr *ngFor="let Historial of h" style="background-color: rgb(255, 255, 255);">
+                                            <td data-label="Id">{{Historial.id}}</td>
+                                            <td data-label="Nombre">{{Historial.Nombre}}</td>
+                                            <td data-label="Estado">{{Historial.Estado}}</td>
+                                            <td data-label="Flujo">{{Historial.Flujo}}</td>
+                                            <td data-label="Fecha">{{Historial.Fecha}}</td>
+                                            <td data-label="Acciones" id="UsuariosregAcciones">
+                                                <a class="btn_Acciones_Edit" (click)="botonEditar()">
+                                                    <ul><span class="icon-pencil"></span> EDITAR</ul>
+                                                    <i class='bx bxs-edit'></i>
+                                                </a>
+                                                <a class="btn_Acciones_Delete"
+                                                    (click)="deleteUser(Historial.uid, Historial.id)">
+                                                    <ul><i class="icon-bin"></i>ELIMINAR </ul><i></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="container form-condimodeagua" *ngIf="rol == 'administrador'">
-                <div class="row">
-                    <h1>Historial Administrador</h1>
-                    <div class="card col-md-3 mx-auto my-5 table-responsive" style="width: 66rem;">
-
-
-                        <form class="Formulario-Historial" *ngIf="OpenCrear == true || OpenEditar == true" (ngSubmit)="registerUser(RegisterForm.value)" #RegisterForm="ngForm" >
-                            <h2>
-                              <font color="black">Historial de Datos de Usuarios</font>
-                            </h2>
-                            <div class="form-group">
-                                <font color="black" for="uid">UID</font>
-                                <input  type="text" class="form-control"  ngModel id="uid" name="uid"  placeholder="UID">
-                              </div>
-                              <div class="form-group">
-                                <font color="black" for="aid">ID</font>
-                                <input  type="text" class="form-control"  ngModel id="aid" name="aid"  placeholder="ID">
-                              </div>
-                            <div class="form-group">
-                              <font color="black" for="Nombre">Nombre</font>
-                              <input type="text" class="form-control" ngModel id="Nombre" name="Nombre" placeholder="Nombre">
-                            </div>
-                            <div class="form-group">
-                              <font color="black" for="Fecha">Fecha</font>
-                              <input type="text" class="form-control" ngModel id="Fecha" name="Fecha" placeholder="Fecha">
-                            </div>
-                            <div class="form-group">
-                              <font color="black" for="Flujo">Flujo</font>
-                              <input type="text" class="form-control" ngModel id="Flujo" name="Flujo" placeholder="Flujo">
-                            </div>
-                            <div class="form-group">
-                              <font color="black" for="Estado">Estado</font>
-                              <input type="text" class="form-control" ngModel id="Estado" name="Estado" placeholder="Estado">
-                            </div>
-                    
-                            <input *ngIf="OpenEditar == false || OpenCrear == true" type="submit" id="saveData" name="signup_submit" value="Crear historial" class="btn btn-success mt-3 mb-5"
-                              placeholder="font:color=white; Crear nuevo empleado" />
-
-                              <input *ngIf="OpenEditar == true || OpenCrear == false"  type="submit" id="saveData" name="signup_submit" value="Editar historial" class="btn btn-primary mt-3 mb-5 mx-2"
-                              placeholder="font:color=white; Crear nuevo empleado" />
-
-                          </form>
-
-                        <div class="btn_create"><a (click)="botonCreear()"  class="btn_Acciones_Save">
-                                <ul><span class="icon-plus"></span> CREAR</ul><i></i>
-                            </a></div>
-                        <table id="Usuarios" class="table table-sm table-primary table-hover table-bordered ">
-                            <caption>Lista de historial</caption>
-                            <thead class="table-info">
-                                <tr>
-                                    <th scope="col">
-                                        <font color="black">Id</font>
-                                    </th>
-                                    <th scope="col">
-                                        <font color="black">Nombre</font>
-                                    </th>
-                                    <th scope="col">
-                                        <font color="black">Estado</font>
-                                    </th>
-                                    <th scope="col">
-                                        <font color="black">Flujo</font>
-                                    </th>
-                                    <th scope="col">
-                                        <font color="black" id="fecha" for="start">Seleccione fecha:</font>
-                                        <input id="infecha" type="date" id="start" name="trip-start" value=""
-                                            min="2022-01-01" max="2023-12-30">
-                                        <input type="submit" value="Aplicar">
-                                    </th>
-                                    <th scope="col">ACCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody *ngFor="let h of usuariosall">
-
-                                <tr *ngFor="let Historial of h" style="background-color: rgb(255, 255, 255);">
-                                    <td>{{Historial.id}}</td>
-                                    <td>{{Historial.Nombre}}</td>
-                                    <td>{{Historial.Estado}}</td>
-                                    <td>{{Historial.Flujo}}</td>
-                                    <td>{{Historial.Fecha}}</td>
-                                    <td id="UsuariosregAcciones">
-                                        <a class="btn_Acciones_Edit" (click)="botonEditar()">
-                                            <ul><span class="icon-pencil"></span> EDITAR</ul><i class='bx bxs-edit'></i>
-                                        </a>
-                                        <a  class="btn_Acciones_Delete" (click)="deleteUser(Historial.uid, Historial.id)">
-                                            <ul><i class="icon-bin"></i>ELIMINAR </ul><i></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </main>
     </div>
 </div>
+
+<app-footer></app-footer>
